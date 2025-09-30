@@ -78,7 +78,6 @@ npm start
 
 http://localhost:8080/api/health
 
----
 
 proyecto-x/
 ├── backend/                  # Código del servidor (API REST)
