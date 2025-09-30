@@ -62,11 +62,11 @@ Para probar los endpoints:
 
 ## Pasos de instalación
 
-1. Clonar el repositorio:
+### 1. Clonar el repositorio:
    ```bash
    git clone https://github.com/organizacion/proyecto-x.git
    cd proyecto-x
-
+   
 docker-compose up -d
 
 mvn clean install
