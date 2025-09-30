@@ -1,104 +1,82 @@
-# Proyecto X
+# Guía de configuración del entorno de desarrollo
 
-Este documento describe la configuración necesaria para montar el entorno de desarrollo del proyecto.  
-El objetivo es que cualquier persona que se incorpore al equipo pueda levantar el entorno en su ordenador de forma rápida y consistente.
-
----
-
-## Requisitos previos
-
-- **Sistema operativo recomendado:** Linux (Ubuntu 22.04 LTS) o Windows 11 con WSL2.
-- **Gestor de versiones:** [Git](https://git-scm.com/) v2.40 o superior.
-- **Gestor de paquetes:**  
-  - Node.js: [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/).  
-  - Python: [pip](https://pip.pypa.io/) (si aplica).  
+Esta guía está pensada para cualquier persona que se incorpore al proyecto y necesite configurar su entorno de desarrollo desde cero. Aquí encontrarás las herramientas, versiones recomendadas y recursos que estamos utilizando en el grupo para trabajar de forma coherente y sincronizada.
 
 ---
 
-## Entorno de desarrollo
+## 1. IDE: Visual Studio Code
 
-- **IDE recomendado:**  
-  - [Visual Studio Code](https://code.visualstudio.com/) v1.92.0 o superior.  
-    - Extensiones recomendadas:  
-      - *ESLint*  
-      - *Prettier - Code Formatter*  
-      - *REST Client* (para pruebas rápidas de API)  
-      - *Docker* (si se usan contenedores)
+El editor de código que estamos utilizando en el proyecto es **Visual Studio Code (VS Code)**. Es ligero, multiplataforma y muy compatible con el desarrollo en Python.
 
-- **Servidor de aplicaciones:**  
-  - [Spring Boot](https://spring.io/projects/spring-boot) v3.2.2  
-  - Servidor embebido: Tomcat 10  
+### Extensiones recomendadas
+Una vez instalado VS Code, se recomienda añadir las siguientes extensiones:
 
-- **Lenguaje y frameworks:**  
-  - Java 17 (OpenJDK)  
-  - Spring Boot 3.2.x  
-  - Maven 3.9+ como gestor de dependencias  
-
-- **Frontend (si aplica):**  
-  - Node.js v20  
-  - Angular CLI 17 o React 18 (ajustar según corresponda)  
+- **Python (oficial de Microsoft)**: facilita la ejecución y depuración de código en Python.
+- **Pylance**: para autocompletado inteligente y chequeo de tipos.
+- **Copilot**: Integración de Copilot en Visual Studio.
 
 ---
 
-## Lanzadores de peticiones API
+## 2. Lenguaje y Framework
 
-Para probar los endpoints:  
-- **Opciones:**  
-  - [Postman](https://www.postman.com/downloads/) v11  
-  - Extensión *REST Client* en VS Code  
-  - `curl` desde línea de comandos  
+### Python
+
+Trabajamos con versiones recientes de Python, por compatibilidad con las últimas versiones de Django y sus dependencias. Las versiones que se están usando actualmente en el equipo son:
+
+- **Python 3.13.7** (la más moderna)
+- **Python 3.12.4** (alternativa estable)
+
+Puedes instalar la versión que prefieras entre estas dos. Solo asegúrate de que **PiP**, el gestor de paquetes de Python, esté disponible después de la instalación (suele venir incluido, pero es importante comprobarlo).
+
+### Django
+
+El framework que utilizamos para el desarrollo web del proyecto es **Django**. Se instala fácilmente mediante `pip` una vez que Python esté configurado.
+
+Además, es recomendable crear un **entorno virtual** (`venv`) para cada proyecto, lo que permite aislar las dependencias y mantener limpio el entorno global del sistema.
 
 ---
 
-## Herramientas de soporte
+## 3. Instalación rápida de herramientas con Ninite
 
-- **Control de versiones:** Git + GitHub/GitLab/Bitbucket (según repositorio del grupo).  
-- **Contenedores:** [Docker Desktop](https://www.docker.com/) v27 (si el proyecto incluye docker-compose).  
-- **Base de datos:**  
-  - PostgreSQL 15  
-  - pgAdmin 4 para gestión visual (opcional)  
+Para simplificar la instalación de varias herramientas necesarias, utilizamos [Ninite](https://ninite.com), una página que permite seleccionar varios programas y descargar un único instalador para todos ellos.
+
+Las herramientas que recomendamos instalar desde Ninite son:
+
+- **Visual Studio Code**
+- **Python 3**
+- **Git** (opcional, dependiendo del flujo de trabajo)
+- **Discord** (nuestro entorno de comunicación colaborativo)
 
 ---
 
-## Pasos de instalación
+## 4. Herramientas y recursos de soporte
 
-### 1. Clonar el repositorio:
-   ```bash
-   git clone https://github.com/organizacion/proyecto-x.git
-   cd proyecto-x
-   
-docker-compose up -d
+Durante el desarrollo usamos algunas herramientas adicionales que ayudan a mejorar la productividad y la colaboración:
 
-mvn clean install
-mvn spring-boot:run
+- **GitHub**: repositorio del proyecto, gestión de versiones, issues y revisiones de código.
+- **Git**: cliente de control de versiones (si no se trabaja exclusivamente desde GitHub Desktop).
+- **GitHub Copilot**: asistente de codificación con IA que se integra en VS Code.
+- **ChatGPT**: para consultas, generación de ideas o ayuda puntual en la programación.
+- **Discord**: canal de comunicación principal del equipo.
 
-cd frontend
-npm install
-npm start
+---
 
-http://localhost:8080/api/health
+## 5. Configuración inicial del proyecto
 
+Una vez que tengas Python y PiP instalados, puedes proceder con la instalación de Django y la creación del entorno virtual del proyecto.
 
-proyecto-x/
-├── backend/                  # Código del servidor (API REST)
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/...      # Código fuente Java
-│   │   │   └── resources/    # Configuración, properties, etc.
-│   │   └── test/             # Tests unitarios e integración
-│   ├── pom.xml               # Configuración de Maven
-│   └── README.md             # Notas específicas del backend
-│
-├── frontend/                 # Aplicación web (Angular/React/Vue)
-│   ├── src/                  # Código fuente del frontend
-│   ├── package.json          # Dependencias npm/yarn
-│   ├── public/               # Recursos estáticos
-│   └── README.md             # Notas específicas del frontend
-│
-├── docs/                     # Documentación del proyecto
-│   └── arquitectura.md
-│
-├── docker-compose.yml        # Orquestación de servicios (BD, backend, frontend)
-├── .env.example              # Variables de entorno de ejemplo
-├── .gitignore
-└── README.md                 # Guía de instalación y configuración general
+Desde la terminal, puedes ejecutar los siguientes comandos básicos:
+
+```bash
+# Crear un entorno virtual (sustituye 'entorno' por el nombre que prefieras)
+python -m venv entorno
+
+# Activar el entorno (en Windows)
+entorno\Scripts\activate
+
+# Activar el entorno (en macOS/Linux)
+source entorno/bin/activate
+
+# Instalar Django
+pip install django
+
