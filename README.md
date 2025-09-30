@@ -21,12 +21,9 @@ Una vez instalado VS Code, se recomienda añadir las siguientes extensiones:
 
 ### Python
 
-Trabajamos con versiones recientes de Python, por compatibilidad con las últimas versiones de Django y sus dependencias. Las versiones que se están usando actualmente en el equipo son:
+Trabajamos con versiones recientes de Python, por compatibilidad con las últimas versiones de Django y sus dependencias. La version que se están usando actualmente en el equipo es:
 
-- **Python 3.13.7** (la más moderna)
-- **Python 3.12.4** (alternativa estable)
-
-Puedes instalar la versión que prefieras entre estas dos. Solo asegúrate de que **PiP**, el gestor de paquetes de Python, esté disponible después de la instalación (suele venir incluido, pero es importante comprobarlo).
+- **Python 3.13.7**
 
 ### Django
 
