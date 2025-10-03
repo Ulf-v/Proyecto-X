@@ -71,6 +71,62 @@ python -m venv entorno
 # Activar el entorno (en Windows)
 entorno\Scripts\activate
 
+
+ProyectoV1/
+│
+├── config/
+│   ├── __pypache__
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── settings.cpython-312.pyc
+│   │   ├── urls.cpython-312.pyc
+│   │   └── wsgi.cpython-312.pyc
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └──wsgi.py
+├── Proyecto/
+│   ├── bin/
+│   │   ├── django-admin
+│   │   ├──sqlformat
+│   │   ├──activate
+│   │   ├──activate.csh
+│   │   ├──activate.fish
+│   │   ├──Activate.ps1
+│   │   ├──pip
+│   │   ├──pip3
+│   │   ├──pip3.12
+│   │   ├──python
+│   │   ├──python3
+│   │   └──python3.12
+│   ├── include/
+│   │   └── python3.12
+│   ├── lib/
+│   │   └── python3.12
+│   │       └── site-packages
+│   ├── pyvenv.cfg
+│   └── lib64
+├── web/
+│   ├── __pypache__
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── admin.cpython-312.pyc
+│   │   ├── apps.cpython-312.pyc
+│   │   └── models.cpython-312.pyc
+│   ├── migrations
+│   │   ├── __pypache__
+│   │   │   └── __init__.cpython-312.pyc
+│   │   └── __init__.py
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+└── manage.py
+
+
 # Activar el entorno (en macOS/Linux)
 source entorno/bin/activate
 
