@@ -1,135 +1,295 @@
-# Guía de configuración del entorno de desarrollo
+# Proyecto Web con Docker
 
-Esta guía está pensada para cualquier persona que se incorpore al proyecto y necesite configurar su entorno de desarrollo desde cero. Aquí encontrarás las herramientas, versiones recomendadas y recursos que estamos utilizando en el grupo para trabajar de forma coherente y sincronizada.
+Proyecto web completo con arquitectura de microservicios utilizando Docker, que incluye un frontend moderno, backend robusto y base de datos MySQL.
 
----
+## 🏗️ Arquitectura
 
-## 1. IDE: Visual Studio Code
+- **Frontend**: Node.js + JavaScript + Tailwind CSS (Puerto 3000)
+- **Backend**: Spring Boot (Java 17) + REST API (Puerto 8081)
+- **Base de Datos**: MySQL 8.0 (Puerto 3306)
+- **Administrador BD**: Adminer (Puerto 8080)
 
-El editor de código que estamos utilizando en el proyecto es **Visual Studio Code (VS Code)**. Es ligero, multiplataforma y muy compatible con el desarrollo en Python.
+## 📋 Requisitos Previos
 
-### Extensiones recomendadas
-Una vez instalado VS Code, se recomienda añadir las siguientes extensiones:
+- **Docker Desktop** instalado y en ejecución
+  - Windows: [Descargar Docker Desktop](https://www.docker.com/products/docker-desktop/)
+  - Mínimo 4GB RAM asignados a Docker
+  - WSL2 habilitado (en Windows)
 
-- **Python (oficial de Microsoft)**: facilita la ejecución y depuración de código en Python.
-- **Pylance**: para autocompletado inteligente y chequeo de tipos.
-- **Copilot**: Integración de Copilot en Visual Studio.
+## 🚀 Instalación Rápida
 
----
-
-## 2. Lenguaje y Framework
-
-### Python
-
-Trabajamos con versiones recientes de Python, por compatibilidad con las últimas versiones de Django y sus dependencias. La version que se están usando actualmente en el equipo es:
-
-- **Python 3.13.7**
-
-### Django
-
-El framework que utilizamos para el desarrollo web del proyecto es **Django**. Se instala fácilmente mediante `pip` una vez que Python esté configurado.
-
-Además, es recomendable crear un **entorno virtual** (`venv`) para cada proyecto, lo que permite aislar las dependencias y mantener limpio el entorno global del sistema.
-
----
-
-## 3. Instalación rápida de herramientas con Ninite
-
-Para simplificar la instalación de varias herramientas necesarias, utilizamos [Ninite](https://ninite.com), una página que permite seleccionar varios programas y descargar un único instalador para todos ellos.
-
-Las herramientas que recomendamos instalar desde Ninite son:
-
-- **Visual Studio Code**
-- **Python 3**
-- **Git** (opcional, dependiendo del flujo de trabajo)
-- **Discord** (nuestro entorno de comunicación colaborativo)
-
----
-
-## 4. Herramientas y recursos de soporte
-
-Durante el desarrollo usamos algunas herramientas adicionales que ayudan a mejorar la productividad y la colaboración:
-
-- **GitHub**: repositorio del proyecto, gestión de versiones, issues y revisiones de código.
-- **Git**: cliente de control de versiones (si no se trabaja exclusivamente desde GitHub Desktop).
-- **GitHub Copilot**: asistente de codificación con IA que se integra en VS Code.
-- **ChatGPT**: para consultas, generación de ideas o ayuda puntual en la programación.
-- **Discord**: canal de comunicación principal del equipo.
-
----
-
-## 5. Configuración inicial del proyecto
-
-Una vez que tengas Python y PiP instalados, puedes proceder con la instalación de Django y la creación del entorno virtual del proyecto.
-
-Desde la terminal, puedes ejecutar los siguientes comandos básicos:
+### 1. Clonar o descargar el proyecto
 
 ```bash
-# Crear un entorno virtual (sustituye 'entorno' por el nombre que prefieras)
-python -m venv entorno
+git clone [URL_DEL_REPOSITORIO]
+cd Proyecto
+```
 
-# Activar el entorno (en Windows)
-entorno\Scripts\activate
+### 2. Ejecutar el script de instalación
 
+```cmd
+install.bat
+```
 
-ProyectoV1/
+Este script verificará:
+- ✅ Instalación de Docker
+- ✅ Estado de ejecución de Docker
+- ✅ Disponibilidad de Docker Compose
+- ✅ Configuración de variables de entorno
+
+### 3. Iniciar el proyecto
+
+```cmd
+start.bat
+```
+
+Este script:
+- Construirá todas las imágenes Docker
+- Iniciará todos los contenedores
+- Verificará el estado de los servicios
+- Mostrará las URLs de acceso
+
+## 🌐 Acceso a los Servicios
+
+Una vez iniciado el proyecto, los servicios estarán disponibles en:
+
+| Servicio | URL | Descripción |
+|----------|-----|-------------|
+| **Frontend** | http://localhost:3000 | Interfaz web principal |
+| **Backend API** | http://localhost:8081/api | API REST |
+| **Adminer** | http://localhost:8080 | Administrador de base de datos |
+| **MySQL** | localhost:3306 | Base de datos (acceso directo) |
+
+### Credenciales de la Base de Datos
+
+Para acceder a Adminer o conectarse directamente a MySQL:
+
+- **Sistema**: MySQL
+- **Servidor**: `mysql` (desde Docker) o `localhost` (desde host)
+- **Usuario**: `root`
+- **Contraseña**: `rootpassword`
+- **Base de Datos**: `projectdb`
+
+## 📁 Estructura del Proyecto
+
+```
+Proyecto/
+├── frontend/              # Aplicación Node.js + Tailwind
+│   ├── public/           # Archivos estáticos
+│   │   ├── index.html    # Página principal
+│   │   ├── js/
+│   │   │   └── app.js    # Lógica del frontend
+│   │   └── styles/       # Estilos Tailwind
+│   ├── server.js         # Servidor Express
+│   ├── package.json      # Dependencias Node.js
+│   ├── tailwind.config.js
+│   └── Dockerfile
 │
-├── config/
-│   ├── __pypache__
-│   │   ├── __init__.cpython-312.pyc
-│   │   ├── settings.cpython-312.pyc
-│   │   ├── urls.cpython-312.pyc
-│   │   └── wsgi.cpython-312.pyc
-│   ├── __init__.py
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   └──wsgi.py
-├── Proyecto/
-│   ├── bin/
-│   │   ├── django-admin
-│   │   ├──sqlformat
-│   │   ├──activate
-│   │   ├──activate.csh
-│   │   ├──activate.fish
-│   │   ├──Activate.ps1
-│   │   ├──pip
-│   │   ├──pip3
-│   │   ├──pip3.12
-│   │   ├──python
-│   │   ├──python3
-│   │   └──python3.12
-│   ├── include/
-│   │   └── python3.12
-│   ├── lib/
-│   │   └── python3.12
-│   │       └── site-packages
-│   ├── pyvenv.cfg
-│   └── lib64
-├── web/
-│   ├── __pypache__
-│   │   ├── __init__.cpython-312.pyc
-│   │   ├── admin.cpython-312.pyc
-│   │   ├── apps.cpython-312.pyc
-│   │   └── models.cpython-312.pyc
-│   ├── migrations
-│   │   ├── __pypache__
-│   │   │   └── __init__.cpython-312.pyc
-│   │   └── __init__.py
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── tests.py
-│   ├── urls.py
-│   └── views.py
-├── db.sqlite3
-└── manage.py
+├── backend/              # Aplicación Spring Boot
+│   ├── src/
+│   │   └── main/
+│   │       ├── java/com/proyecto/backend/
+│   │       │   ├── BackendApplication.java
+│   │       │   ├── controller/
+│   │       │   │   └── UserController.java
+│   │       │   ├── model/
+│   │       │   │   └── User.java
+│   │       │   ├── repository/
+│   │       │   │   └── UserRepository.java
+│   │       │   └── service/
+│   │       │       └── UserService.java
+│   │       └── resources/
+│   │           └── application.properties
+│   ├── pom.xml           # Dependencias Maven
+│   └── Dockerfile
+│
+├── database/             # Configuración de BD
+│   └── init.sql         # Script de inicialización
+│
+├── docker-compose.yml   # Orquestación de servicios
+├── install.bat          # Script de instalación
+├── start.bat           # Script de inicio
+└── README.md           # Este archivo
+```
 
+## 🔧 Comandos Útiles
 
-# Activar el entorno (en macOS/Linux)
-source entorno/bin/activate
+### Gestión de Contenedores
 
-# Instalar Django
-pip install django
+```cmd
+# Iniciar todos los servicios
+docker compose up -d
 
+# Ver logs de todos los servicios
+docker compose logs -f
+
+# Ver logs de un servicio específico
+docker compose logs -f backend
+
+# Detener todos los servicios
+docker compose down
+
+# Detener y eliminar volúmenes (¡elimina datos de BD!)
+docker compose down -v
+
+# Reconstruir imágenes
+docker compose build
+
+# Reiniciar un servicio específico
+docker compose restart frontend
+```
+
+### Estado de los Servicios
+
+```cmd
+# Ver contenedores en ejecución
+docker compose ps
+
+# Ver uso de recursos
+docker stats
+```
+
+### Acceso a Contenedores
+
+```cmd
+# Acceder al shell del backend
+docker exec -it proyecto-backend sh
+
+# Acceder al shell del frontend
+docker exec -it proyecto-frontend sh
+
+# Acceder a MySQL
+docker exec -it proyecto-mysql mysql -uroot -prootpassword projectdb
+```
+
+## 🎯 Funcionalidades Implementadas
+
+### Frontend
+- ✅ Interfaz moderna con Tailwind CSS
+- ✅ Gestión de usuarios (CRUD)
+- ✅ Verificación de estado del backend
+- ✅ Comunicación con API REST
+- ✅ Diseño responsive
+
+### Backend
+- ✅ API REST completa
+- ✅ Endpoints de usuarios (CRUD)
+- ✅ Health check endpoint
+- ✅ Integración con JPA/Hibernate
+- ✅ CORS habilitado
+- ✅ Validación de datos
+
+### Base de Datos
+- ✅ MySQL 8.0
+- ✅ Inicialización automática con datos de ejemplo
+- ✅ Persistencia de datos con volúmenes
+- ✅ Adminer para gestión visual
+
+## 📡 API Endpoints
+
+### Health Check
+```
+GET /api/health
+Response: { "status": "ok", "service": "backend" }
+```
+
+### Usuarios
+
+**Obtener todos los usuarios**
+```
+GET /api/users
+Response: [{ "id": 1, "name": "Juan", "email": "juan@example.com" }, ...]
+```
+
+**Obtener un usuario**
+```
+GET /api/users/{id}
+Response: { "id": 1, "name": "Juan", "email": "juan@example.com" }
+```
+
+**Crear usuario**
+```
+POST /api/users
+Body: { "name": "María", "email": "maria@example.com" }
+Response: { "id": 2, "name": "María", "email": "maria@example.com" }
+```
+
+**Actualizar usuario**
+```
+PUT /api/users/{id}
+Body: { "name": "María García", "email": "maria.garcia@example.com" }
+Response: { "id": 2, "name": "María García", "email": "maria.garcia@example.com" }
+```
+
+**Eliminar usuario**
+```
+DELETE /api/users/{id}
+Response: 204 No Content
+```
+
+## 🔍 Solución de Problemas
+
+### Docker no inicia
+1. Verifica que Docker Desktop esté instalado y actualizado
+2. En Windows, asegúrate de tener WSL2 habilitado
+3. Reinicia Docker Desktop
+
+### Los servicios no responden
+1. Espera 30-60 segundos después de iniciar (primera vez puede tardar más)
+2. Verifica logs: `docker compose logs -f`
+3. Verifica puertos no estén ocupados: `netstat -ano | findstr "3000 8080 8081 3306"`
+
+### Error de conexión a la base de datos
+1. Verifica que MySQL esté running: `docker ps`
+2. Espera a que MySQL termine de inicializarse (check logs)
+3. Reinicia el backend: `docker compose restart backend`
+
+### Reconstruir todo desde cero
+```cmd
+docker compose down -v
+docker compose up -d --build
+```
+
+## 🛠️ Desarrollo
+
+### Modificar el Frontend
+1. Edita archivos en `frontend/`
+2. Reconstruye: `docker compose build frontend`
+3. Reinicia: `docker compose restart frontend`
+
+### Modificar el Backend
+1. Edita archivos en `backend/src/`
+2. Reconstruye: `docker compose build backend`
+3. Reinicia: `docker compose restart backend`
+
+### Modificar la Base de Datos
+1. Edita `database/init.sql`
+2. Elimina volumen: `docker compose down -v`
+3. Reinicia: `docker compose up -d`
+
+## 📝 Notas Adicionales
+
+- Los datos de MySQL se persisten en un volumen Docker
+- El backend espera a que MySQL esté listo antes de iniciar (healthcheck)
+- El frontend se comunica con el backend a través de la red interna de Docker
+- Adminer es extremadamente ligero (<10MB) y fácil de usar
+
+## 🤝 Contribuciones
+
+Para contribuir al proyecto:
+1. Crea un fork del repositorio
+2. Crea una rama para tu feature
+3. Realiza tus cambios
+4. Envía un pull request
+
+## 📄 Licencia
+
+Este proyecto está bajo licencia MIT.
+
+## 👥 Autor
+
+Proyecto creado para demostración de arquitectura de microservicios con Docker.
+
+---
+
+**¿Necesitas ayuda?** Abre un issue en el repositorio o consulta la documentación de Docker.
