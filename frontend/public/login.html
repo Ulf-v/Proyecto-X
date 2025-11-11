@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenLine | Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#D4AF37',
+                        onyx: '#0F0F0F',
+                        graphite: '#1F1F1F',
+                        smoke: '#E5E7EB'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-onyx text-smoke min-h-screen flex flex-col">
+    <nav class="bg-graphite/95 border-b border-gold/20">
+        <div class="max-w-4xl mx-auto px-5 h-16 flex items-center justify-between">
+            <a href="/" class="text-xl font-semibold tracking-[0.3em] text-gold">GoldenLine</a>
+            <div class="flex items-center gap-4 text-xs uppercase tracking-[0.3em]">
+                <a href="/" class="hover:text-gold transition">Inicio</a>
+                <a href="/register" class="hover:text-gold transition">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 flex items-center justify-center px-5 py-16">
+        <div class="w-full max-w-md bg-graphite/80 border border-gold/20 rounded-3xl shadow-xl p-8 space-y-6">
+            <header class="space-y-2 text-center">
+                <h1 class="text-3xl font-semibold text-white tracking-[0.2em]">Bienvenido</h1>
+                <p class="text-sm text-smoke/60">Inicia sesión para acceder a tus pedidos y beneficios de GoldenLine.</p>
+            </header>
+
+            <form class="space-y-5" action="#" method="post">
+                <label class="block text-xs uppercase tracking-[0.3em] text-smoke/60">
+                    Email
+                    <input type="email" required placeholder="nombre@correo.com" class="mt-2 w-full px-4 py-3 bg-onyx border border-gold/20 rounded-xl text-sm text-smoke placeholder:text-smoke/40 focus:outline-none focus:border-gold">
+                </label>
+                <label class="block text-xs uppercase tracking-[0.3em] text-smoke/60">
+                    Contraseña
+                    <input type="password" required placeholder="••••••••" class="mt-2 w-full px-4 py-3 bg-onyx border border-gold/20 rounded-xl text-sm text-smoke placeholder:text-smoke/40 focus:outline-none focus:border-gold">
+                </label>
+                <div class="flex items-center justify-between text-xs text-smoke/50">
+                    <label class="inline-flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" class="accent-gold">
+                        <span>Recordarme</span>
+                    </label>
+                    <a href="#" class="text-gold hover:underline">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <button type="submit" class="w-full px-4 py-3 bg-gold text-onyx rounded-full text-sm uppercase tracking-[0.3em] font-semibold hover:bg-gold/90 transition">Entrar</button>
+            </form>
+
+            <footer class="text-sm text-center text-smoke/60">
+                ¿Aún no tienes cuenta? <a href="/register" class="text-gold hover:underline">Regístrate aquí</a>
+            </footer>
+        </div>
+    </main>
+</body>
+</html>

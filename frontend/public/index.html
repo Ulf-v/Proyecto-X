@@ -3,84 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Web - Docker</title>
+    <title>GoldenLine | E-commerce de lujo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3B82F6',
-                        secondary: '#8B5CF6',
+                        gold: '#D4AF37',
+                        onyx: '#0F0F0F',
+                        graphite: '#1F1F1F',
+                        smoke: '#E5E7EB'
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <!-- Header -->
-        <header class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h1 class="text-4xl font-bold text-primary mb-2">Proyecto Web con Docker</h1>
-            <p class="text-gray-600">Frontend: Node.js + Tailwind | Backend: Spring Boot | DB: MySQL</p>
-        </header>
-
-        <!-- Main Content -->
-        <div class="grid md:grid-cols-2 gap-6">
-            <!-- Card 1: API Status -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-semibold text-secondary mb-4">Estado de la API</h2>
-                <div id="api-status" class="space-y-2">
-                    <p class="text-gray-600">Conectando con el backend...</p>
+<body class="bg-onyx text-smoke min-h-screen flex flex-col">
+    <nav class="fixed inset-x-0 top-0 z-20 bg-graphite/95 backdrop-blur border-b border-gold/20">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="flex items-center justify-between h-16">
+                <a href="/" class="text-2xl font-semibold tracking-[0.3em] text-gold">GoldenLine</a>
+                <div class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest">
+                    <a href="#colecciones" class="hover:text-gold transition">Colecciones</a>
+                    <a href="#destacados" class="hover:text-gold transition">Destacados</a>
+                    <a href="#contacto" class="hover:text-gold transition">Contacto</a>
                 </div>
-                <button onclick="checkApiStatus()" 
-                        class="mt-4 bg-primary hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition">
-                    Verificar Estado
-                </button>
-            </div>
-
-            <!-- Card 2: Users List -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-semibold text-secondary mb-4">Usuarios</h2>
-                <div id="users-list" class="space-y-2">
-                    <p class="text-gray-600">Carga los usuarios desde la base de datos...</p>
+                <div class="flex items-center gap-4">
+                    <a href="/login" class="px-4 py-2 border border-gold/40 rounded-full text-sm uppercase tracking-widest hover:border-gold hover:text-gold transition">Login</a>
+                    <a href="/register" class="px-4 py-2 bg-gold text-onyx rounded-full text-sm uppercase tracking-widest font-semibold hover:bg-gold/90 transition">Register</a>
                 </div>
-                <button onclick="loadUsers()" 
-                        class="mt-4 bg-secondary hover:bg-purple-600 text-white font-bold py-2 px-4 rounded transition">
-                    Cargar Usuarios
-                </button>
             </div>
         </div>
+    </nav>
 
-        <!-- Add User Form -->
-        <div class="bg-white rounded-lg shadow-md p-6 mt-8">
-            <h2 class="text-2xl font-semibold text-primary mb-4">Agregar Nuevo Usuario</h2>
-            <form id="userForm" class="space-y-4">
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Nombre:</label>
-                    <input type="text" id="userName" required
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+    <main class="flex-1 pt-24">
+        <section class="relative max-w-7xl mx-auto px-5 py-16">
+            <div class="relative rounded-3xl overflow-hidden border border-gold/20 shadow-[0_0_50px_-20px_rgba(212,175,55,0.6)]">
+                <div class="absolute inset-0 z-10 bg-gradient-to-r from-onyx/85 via-onyx/70 to-transparent"></div>
+                <div class="relative z-0 bg-cover bg-center min-h-[380px]" style="background-image: url('./resources/banner.svg');"></div>
+                <div class="absolute inset-0 z-20 flex flex-col justify-center px-10 md:px-16 lg:px-24">
+                    <span class="text-sm uppercase tracking-[0.4em] text-gold/80 mb-4">Colección Invierno 2025</span>
+                    <h1 class="text-4xl md:text-5xl font-semibold text-white leading-tight max-w-3xl">Elegancia monocromática con destellos dorados para cada momento.</h1>
+                    <p class="mt-6 max-w-xl text-smoke/80 text-lg">Explora piezas cuidadosamente seleccionadas para elevar tu estilo con detalles metalizados y acabados premium.</p>
+                    <div class="mt-8 flex gap-4">
+                        <a href="#destacados" class="px-6 py-3 bg-gold text-onyx rounded-full text-sm uppercase tracking-[0.3em] font-semibold hover:bg-gold/90 transition">Ver destacados</a>
+                        <a href="/register" class="px-6 py-3 border border-white/40 rounded-full text-sm uppercase tracking-[0.3em] hover:border-gold hover:text-gold transition">Únete a GoldenLine</a>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Email:</label>
-                    <input type="email" id="userEmail" required
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+        </section>
+
+        <section id="filtros" class="bg-graphite/60 border-y border-gold/10 py-10">
+            <div class="max-w-7xl mx-auto px-5">
+                <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-white">Filtrar por estilo</h2>
+                        <p class="text-sm text-smoke/60">Ajusta la búsqueda según tus preferencias monocromáticas.</p>
+                    </div>
+                    <button id="resetFilters" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 rounded-full text-xs uppercase tracking-[0.3em] hover:border-gold hover:text-gold transition">Limpiar filtros</button>
+                </header>
+                <form id="filtersForm" class="grid md:grid-cols-4 gap-4">
+                    <label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-smoke/60">
+                        Categoría
+                        <select class="bg-onyx border border-gold/20 rounded-lg px-3 py-2 text-sm text-smoke focus:outline-none focus:border-gold">
+                            <option>Todo</option>
+                            <option>Accesorios</option>
+                            <option>Relojes</option>
+                            <option>Calzado</option>
+                        </select>
+                    </label>
+                    <label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-smoke/60">
+                        Rango de precio
+                        <select class="bg-onyx border border-gold/20 rounded-lg px-3 py-2 text-sm text-smoke focus:outline-none focus:border-gold">
+                            <option>Todos</option>
+                            <option>Hasta 100€</option>
+                            <option>100€ - 250€</option>
+                            <option>250€ - 500€</option>
+                        </select>
+                    </label>
+                    <label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-smoke/60">
+                        Material
+                        <select class="bg-onyx border border-gold/20 rounded-lg px-3 py-2 text-sm text-smoke focus:outline-none focus:border-gold">
+                            <option>Todos</option>
+                            <option>Cuero</option>
+                            <option>Acero</option>
+                            <option>Carbono</option>
+                        </select>
+                    </label>
+                    <label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-smoke/60">
+                        Búsqueda
+                        <input type="search" placeholder="Buscar por nombre" class="bg-onyx border border-gold/20 rounded-lg px-3 py-2 text-sm text-smoke placeholder:text-smoke/40 focus:outline-none focus:border-gold">
+                    </label>
+                </form>
+            </div>
+        </section>
+
+        <section id="destacados" class="max-w-7xl mx-auto px-5 py-16 space-y-10">
+            <header class="flex flex-col gap-3">
+                <span class="text-xs uppercase tracking-[0.4em] text-gold/70">Colección destacada</span>
+                <h2 class="text-3xl font-semibold text-white">Piezas seleccionadas</h2>
+                <p class="text-sm text-smoke/60 max-w-2xl">Descubre algunos de los artículos más solicitados por nuestra comunidad GoldenLine. Diseñados para resaltar cada detalle de tu outfit.</p>
+            </header>
+
+            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <article class="group bg-graphite rounded-3xl border border-gold/10 overflow-hidden transition hover:border-gold/40">
+                    <div class="h-48 bg-gradient-to-br from-onyx via-graphite to-gold/40"></div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-lg font-semibold text-white">Chronos Edge</h3>
+                        <p class="text-sm text-smoke/60">Reloj de acero pulido con correa intercambiable y detalles en oro cepillado.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gold font-semibold tracking-wide">€420</span>
+                            <button class="text-xs uppercase tracking-[0.3em] text-gold hover:text-white transition">Ver más</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="group bg-graphite rounded-3xl border border-gold/10 overflow-hidden transition hover:border-gold/40">
+                    <div class="h-48 bg-gradient-to-br from-onyx via-graphite to-gold/40"></div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-lg font-semibold text-white">Lunar Velvet</h3>
+                        <p class="text-sm text-smoke/60">Bolso monocromático en terciopelo con acabados metálicos dorados.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gold font-semibold tracking-wide">€265</span>
+                            <button class="text-xs uppercase tracking-[0.3em] text-gold hover:text-white transition">Ver más</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="group bg-graphite rounded-3xl border border-gold/10 overflow-hidden transition hover:border-gold/40">
+                    <div class="h-48 bg-gradient-to-br from-onyx via-graphite to-gold/40"></div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-lg font-semibold text-white">Auric Steps</h3>
+                        <p class="text-sm text-smoke/60">Calzado premium en cuero negro con inserciones metálicas doradas.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gold font-semibold tracking-wide">€310</span>
+                            <button class="text-xs uppercase tracking-[0.3em] text-gold hover:text-white transition">Ver más</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="group bg-graphite rounded-3xl border border-gold/10 overflow-hidden transition hover:border-gold/40">
+                    <div class="h-48 bg-gradient-to-br from-onyx via-graphite to-gold/40"></div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-lg font-semibold text-white">Gilded Harmony</h3>
+                        <p class="text-sm text-smoke/60">Set de accesorios en acero ennegrecido con detalles bañados en oro.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gold font-semibold tracking-wide">€195</span>
+                            <button class="text-xs uppercase tracking-[0.3em] text-gold hover:text-white transition">Ver más</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="colecciones" class="bg-graphite/60 border-t border-gold/10">
+            <div class="max-w-7xl mx-auto px-5 py-16 grid gap-10 md:grid-cols-2">
+                <div class="space-y-4">
+                    <span class="text-xs uppercase tracking-[0.4em] text-gold/70">Experiencia GoldenLine</span>
+                    <h2 class="text-3xl font-semibold text-white">Personal shoppers y asesoría exclusiva</h2>
+                    <p class="text-sm text-smoke/60">Únete a nuestra comunidad para recibir asesorías personalizadas, lanzamientos adelantados y acceso VIP a eventos privados.</p>
+                    <a href="/register" class="inline-flex items-center gap-2 px-5 py-3 bg-gold text-onyx rounded-full text-xs uppercase tracking-[0.3em] font-semibold hover:bg-gold/90 transition">Solicitar acceso</a>
                 </div>
-                <button type="submit" 
-                        class="bg-primary hover:bg-blue-600 text-white font-bold py-2 px-6 rounded transition">
-                    Agregar Usuario
-                </button>
-            </form>
+                <div class="grid gap-4">
+                    <div class="p-6 rounded-2xl border border-gold/20 bg-onyx/40">
+                        <h3 class="text-lg font-semibold text-white">Colección cápsula</h3>
+                        <p class="mt-2 text-sm text-smoke/60">Ediciones limitadas diseñadas junto a artistas emergentes para piezas irrepetibles.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-gold/20 bg-onyx/40">
+                        <h3 class="text-lg font-semibold text-white">Programa Loyalty</h3>
+                        <p class="mt-2 text-sm text-smoke/60">Acumula puntos con cada compra y accede a beneficios exclusivos en GoldenLine.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-gold/20 bg-onyx/40">
+                        <h3 class="text-lg font-semibold text-white">Envíos internacionales</h3>
+                        <p class="mt-2 text-sm text-smoke/60">Entregas premium con empaquetado personalizado y seguimiento continuo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto" class="bg-graphite border-t border-gold/10">
+        <div class="max-w-7xl mx-auto px-5 py-10 grid gap-10 md:grid-cols-2">
+            <div class="space-y-4">
+                <h2 class="text-xl font-semibold text-white tracking-[0.3em]">GoldenLine</h2>
+                <p class="text-sm text-smoke/60">Curaduría de lujo en tonos monocromáticos y dorados. Diseños atemporales con materiales premium.</p>
+            </div>
+            <div class="space-y-2 text-sm text-smoke/60">
+                <p>¿Necesitas asistencia personalizada? Escríbenos a <a href="mailto:concierge@goldenline.com" class="text-gold hover:underline">concierge@goldenline.com</a></p>
+                <p>Atención telefónica: +34 000 000 000</p>
+                <p>Síguenos en redes: @GoldenLineLuxury</p>
+            </div>
         </div>
+        <div class="border-t border-gold/10 py-4 text-center text-xs text-smoke/40 uppercase tracking-[0.4em]">© 2025 GoldenLine. Todos los derechos reservados.</div>
+    </footer>
 
-        <!-- Info Footer -->
-        <footer class="mt-8 text-center text-gray-600">
-            <p>Admin de BD disponible en: <a href="http://localhost:8080" target="_blank" class="text-primary hover:underline">http://localhost:8080</a></p>
-            <p class="mt-2">Sistema: MySQL | Usuario: root | Contraseña: rootpassword</p>
-        </footer>
-    </div>
-
-    <script src="./js/app.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
