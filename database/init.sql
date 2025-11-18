@@ -55,4 +55,4 @@ INSERT INTO usuarios (nombre_completo, email) VALUES
     ('Juan Perez', 'juan.perez@example.com'),
     ('Maria Garcia', 'maria.garcia@example.com'),
     ('Carlos Lopez', 'carlos.lopez@example.com')
-ON DUPLICATE KEY UPDATE name=name;
+ON DUPLICATE KEY UPDATE nombre_completo=nombre_completo;
