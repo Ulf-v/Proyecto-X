@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-container {
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(255, 221, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid #ffdd00;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #ffdd00;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.google-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #ffdd00;
+    color: #000000;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.google-btn:hover {
+    background-color: #ffd700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 221, 0, 0.3);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+}
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.success-message {
+    display: none;
+    padding: 12px;
+    background-color: #ffdd00;
+    color: #000000;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.error-message {
+    display: none;
+    padding: 12px;
+    background-color: #ff4444;
+    color: #ffffff;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.info-box {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 6px;
+    border-left: 4px solid #ffdd00;
+}
+
+.info-box h3 {
+    color: #ffdd00;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.info-box p {
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.info-box code {
+    background-color: #000000;
+    color: #ffdd00;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+}
+
+#g_id_onload {
+    display: none;
+}
