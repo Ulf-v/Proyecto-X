@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Producto - GoldenLine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { gold: '#D4AF37', onyx: '#0F0F0F', graphite: '#1F1F1F', smoke: '#E5E7EB' } } } };
+  </script>
+</head>
+<body class="bg-onyx text-smoke min-h-screen">
+  <main class="max-w-4xl mx-auto p-6">
+    <a href="./index.html" class="text-gold mb-4 inline-block">← Volver</a>
+    <div id="product-root" class="bg-graphite rounded-2xl p-6 grid md:grid-cols-2 gap-6"></div>
+  </main>
+  <script src="./js/cart.js"></script>
+  <script src="./js/product-page.js"></script>
+</body>
+</html>
