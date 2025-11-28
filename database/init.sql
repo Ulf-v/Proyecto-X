@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     nombre_completo VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     direccion VARCHAR (200), -- Puede ser null pq se rellena en el pedido no el registro
-    password_hash VARCHAR(200), 
+    password_hash VARCHAR(200), -- Puede ser null para cuentas de desarrollo o por defecto
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
