@@ -27,11 +27,14 @@
     items.forEach(it => {
       const row = document.createElement('tr');
       row.className = 'border-b border-gold/10';
-      const total = it.price * it.qty; grand += total;
+      const precio = it.precio || it.price || 0;
+      const nombre = it.nombre || it.name || 'Producto';
+      const total = precio * it.qty; 
+      grand += total;
       row.innerHTML = `
-        <td class="py-3">${it.name}</td>
+        <td class="py-3">${nombre}</td>
         <td class="py-3"><input data-id="${it.id}" type="number" min="0" value="${it.qty}" class="w-20 bg-onyx border border-gold/20 rounded px-2 py-1"></td>
-        <td class="py-3">${formatMoney(it.price)}</td>
+        <td class="py-3">${formatMoney(precio)}</td>
         <td class="py-3">${formatMoney(total)}</td>
         <td class="py-3"><button data-remove="${it.id}" class="text-sm text-gold">Eliminar</button></td>
       `;

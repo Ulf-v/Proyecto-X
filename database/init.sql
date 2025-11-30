@@ -17,11 +17,12 @@ CREATE TABLE IF NOT EXISTS usuarios (
 CREATE TABLE IF NOT EXISTS productos (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    categoria ENUM ('gafas','collar','pulsera','reloj','perfume','otros') DEFAULT 'otros',
+    categoria ENUM ('GAFAS','COLLAR','PULSERA','RELOJ','PERFUME','OTROS') DEFAULT 'OTROS',
     marca VARCHAR(100), -- Marca del producto hardcodeada para no crear tabla
     stock BIGINT NOT NULL DEFAULT 0,
     descripcion TEXT,
     precio DECIMAL(7, 2) NOT NULL,
+    image_path VARCHAR(200) DEFAULT NULL, -- Ruta base para las imágenes del producto
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -50,9 +51,17 @@ CREATE TABLE IF NOT EXISTS pedidos_productos (
     CONSTRAINT fk_pp_productos FOREIGN KEY (id_producto) REFERENCES productos(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Insertar datos de ejemplo
+-- Insertar datos de ejemplo de usuarios
 INSERT INTO usuarios (nombre_completo, email) VALUES
     ('Juan Perez', 'juan.perez@example.com'),
     ('Maria Garcia', 'maria.garcia@example.com'),
     ('Carlos Lopez', 'carlos.lopez@example.com')
-ON DUPLICATE KEY UPDATE name=name;
+ON DUPLICATE KEY UPDATE nombre_completo=nombre_completo;
+
+-- Insertar productos iniciales
+INSERT INTO productos (id, nombre, categoria, marca, stock, descripcion, precio, image_path) VALUES
+    (1, 'Chronos Edge', 'RELOJ', 'GoldenLine', 15, 'Reloj de acero pulido con correa intercambiable y detalles en oro cepillado.', 420.00, '/resources/productos/1'),
+    (2, 'Lunar Velvet', 'OTROS', 'GoldenLine', 8, 'Bolso monocromático en terciopelo con acabados metálicos dorados.', 265.00, '/resources/productos/2'),
+    (3, 'Auric Steps', 'OTROS', 'GoldenLine', 12, 'Calzado premium en cuero negro con inserciones metálicas doradas.', 310.00, '/resources/productos/3'),
+    (4, 'Gilded Harmony', 'COLLAR', 'GoldenLine', 20, 'Set de accesorios en acero ennegrecido con detalles bañados en oro.', 195.00, '/resources/productos/4')
+ON DUPLICATE KEY UPDATE nombre=VALUES(nombre), image_path=VALUES(image_path);

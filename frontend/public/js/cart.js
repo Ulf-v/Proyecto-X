@@ -28,21 +28,29 @@ const Cart = (function () {
     getItems() { return read(); },
     addItem(product, qty = 1) {
       const items = read();
-      const idx = items.findIndex(i => i.id === product.id);
+      const productId = parseInt(product.id);
+      const idx = items.findIndex(i => parseInt(i.id) === productId);
       if (idx >= 0) {
         items[idx].qty += qty;
       } else {
-        items.push({ id: product.id, name: product.name, price: product.price, qty });
+        items.push({ 
+          id: productId, 
+          nombre: product.nombre || product.name, 
+          precio: product.precio || product.price, 
+          qty 
+        });
       }
       write(items);
     },
     removeItem(productId) {
-      const items = read().filter(i => i.id !== productId);
+      const id = parseInt(productId);
+      const items = read().filter(i => parseInt(i.id) !== id);
       write(items);
     },
     setItemQty(productId, qty) {
       const items = read();
-      const idx = items.findIndex(i => i.id === productId);
+      const id = parseInt(productId);
+      const idx = items.findIndex(i => parseInt(i.id) === id);
       if (idx >= 0) {
         if (qty <= 0) {
           // remove

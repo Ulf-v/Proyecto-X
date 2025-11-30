@@ -46,7 +46,7 @@ async function loadUsers() {
             <div class="space-y-2">
                 ${users.map(user => `
                     <div class="bg-gray-50 p-3 rounded border border-gray-200">
-                        <p class="font-semibold text-gray-800">${user.name}</p>
+                        <p class="font-semibold text-gray-800">${user.nombreCompleto || user.name}</p>
                         <p class="text-sm text-gray-600">${user.email}</p>
                     </div>
                 `).join('')}
@@ -76,7 +76,7 @@ if (userForm) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, email })
+                body: JSON.stringify({ nombreCompleto: name, email })
             });
 
             if (response.ok) {
