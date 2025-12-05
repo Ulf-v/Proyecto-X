@@ -30,7 +30,7 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         
-        user.setName(userDetails.getName());
+        user.setNombreCompleto(userDetails.getNombreCompleto());
         user.setEmail(userDetails.getEmail());
         
         return userRepository.save(user);
