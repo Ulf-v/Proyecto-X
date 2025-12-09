@@ -20,6 +20,26 @@ services:
       timeout: 10s
       retries: 5
 
+  # Jenkins 
+  jenkins:
+    build:
+      context: ./jenkins
+      dockerfile: Dockerfile
+    container_name: proyecto-jenkins
+    restart: unless-stopped
+    ports:
+      - "8083:8080"      
+      - "50000:50000"   
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock   # Permite a Jenkins ejecutar docker en el host
+    environment:
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=true"
+    networks:
+      - proyecto-network
+    depends_on:
+      - mysql
+
   # Adminer - Administrador de BD ligero
   adminer:
     image: adminer:latest
@@ -81,3 +101,4 @@ networks:
 
 volumes:
   mysql_data:
+  jenkins_home:

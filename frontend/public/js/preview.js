@@ -1,4 +1,4 @@
-// Attach preview modal behaviour to elements with data-product-id
+// TODO comprobar que se puede reciclar y eliminar este archivo
 (function () {
   async function fetchProducts() {
     const res = await fetch('./data/products.json');
