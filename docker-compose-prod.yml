@@ -1,20 +1,15 @@
+version: '3.8'
+
 services:
-  # MySQL Database
   mysql:
-    build:
-      context: ./database
-      dockerfile: Dockerfile
     image: ivandam14/goldenline:mysql
     container_name: proyecto-mysql
     restart: unless-stopped
+    ports:
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: projectdb
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - proyecto-network
     healthcheck:
@@ -23,43 +18,8 @@ services:
       timeout: 10s
       retries: 5
 
-  # Jenkins 
-  jenkins:
-    build:
-      context: ./jenkins
-      dockerfile: Dockerfile
-    container_name: proyecto-jenkins
-    restart: unless-stopped
-    ports:
-      - "8083:8080"      
-      - "50000:50000"   
-    volumes:
-      - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock   # Permite a Jenkins ejecutar docker en el host
-    environment:
-      JAVA_OPTS: "-Djenkins.install.runSetupWizard=true"
-    networks:
-      - proyecto-network
-    depends_on:
-      - mysql
-
-  # Adminer - Administrador de BD ligero
-  adminer:
-    image: adminer:latest
-    container_name: proyecto-adminer
-    restart: unless-stopped
-    ports:
-      - "8082:8080"
-    networks:
-      - proyecto-network
-    depends_on:
-      - mysql
-
-  # Backend Spring Boot
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ivandam14/goldenline:backend
     container_name: proyecto-backend
     restart: unless-stopped
     ports:
@@ -79,11 +39,8 @@ services:
       timeout: 10s
       retries: 5
 
-  # Frontend Node.js
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: ivandam14/goldenline:frontend
     container_name: proyecto-frontend
     restart: unless-stopped
     ports:
@@ -101,7 +58,3 @@ services:
 networks:
   proyecto-network:
     driver: bridge
-
-volumes:
-  mysql_data:
-  jenkins_home:

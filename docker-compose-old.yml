@@ -1,10 +1,7 @@
 services:
   # MySQL Database
   mysql:
-    build:
-      context: ./database
-      dockerfile: Dockerfile
-    image: ivandam14/goldenline:mysql
+    image: mysql:8.0
     container_name: proyecto-mysql
     restart: unless-stopped
     environment:
