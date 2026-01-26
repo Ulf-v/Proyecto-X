@@ -30,6 +30,10 @@ app.get('/pages/cart', (req, res) => {
   res.sendFile(path.join(publicDir, 'pages', 'cart.html'));
 });
 
+app.get('/pages/contact', (req, res) => {
+  res.sendFile(path.join(publicDir, 'pages', 'contact.html'));
+});
+
 app.get('/pages/product/:id', (req, res) => {
   res.sendFile(path.join(publicDir, 'pages', 'product.html'));
 });
@@ -39,6 +43,7 @@ app.get('/status', (req, res) => res.redirect('/pages/status'));
 app.get('/login', (req, res) => res.redirect('/pages/login'));
 app.get('/register', (req, res) => res.redirect('/pages/register'));
 app.get('/cart', (req, res) => res.redirect('/pages/cart'));
+app.get('/contact', (req, res) => res.redirect('/pages/contact'));
 
 // Health check
 app.get('/health', (req, res) => {

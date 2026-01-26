@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoldenLine | Contacto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#D4AF37',
+            onyx: '#0F0F0F',
+            graphite: '#1F1F1F',
+            smoke: '#E5E7EB'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-onyx text-smoke min-h-screen flex flex-col">
+  <nav class="fixed inset-x-0 top-0 z-20 bg-graphite/90 backdrop-blur border-b border-gold/20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="text-2xl font-semibold tracking-[0.3em] text-gold">GoldenLine</a>
+        <div class="flex items-center gap-4 text-xs uppercase tracking-[0.3em]">
+          <a href="/" class="hover:text-gold transition">Inicio</a>
+          <a href="/pages/cart" class="hover:text-gold transition">Carrito</a>
+          <a href="/pages/status" class="hover:text-gold transition">Status</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-1 pt-24">
+    <section class="max-w-4xl mx-auto px-5 py-12">
+      <div class="rounded-3xl border border-gold/20 bg-graphite/70 shadow-[0_0_50px_-25px_rgba(212,175,55,0.4)] overflow-hidden">
+        <div class="p-8 md:p-10 space-y-6">
+          <header class="space-y-2">
+            <span class="text-xs uppercase tracking-[0.4em] text-gold/70">Asistencia</span>
+            <h1 class="text-3xl md:text-4xl font-semibold text-white">Contacta con GoldenLine</h1>
+            <p class="text-sm text-smoke/60">Rellena el formulario y se abrirá tu cliente de correo con el mensaje preparado.</p>
+          </header>
+
+          <form id="contactForm" class="grid gap-5 md:grid-cols-2">
+            <label class="flex flex-col text-xs uppercase tracking-[0.3em] text-smoke/60">
+              Nombre
+              <input id="contactName" type="text" required placeholder="Tu nombre" class="mt-2 w-full px-4 py-3 bg-onyx border border-gold/20 rounded-xl text-sm text-smoke placeholder:text-smoke/40 focus:outline-none focus:border-gold">
+            </label>
+
+            <label class="flex flex-col text-xs uppercase tracking-[0.3em] text-smoke/60">
+              Email
+              <input id="contactEmail" type="email" required placeholder="nombre@correo.com" class="mt-2 w-full px-4 py-3 bg-onyx border border-gold/20 rounded-xl text-sm text-smoke placeholder:text-smoke/40 focus:outline-none focus:border-gold">
+            </label>
+
+            <label class="flex flex-col text-xs uppercase tracking-[0.3em] text-smoke/60 md:col-span-2">
+              Asunto
+              <input id="contactSubject" type="text" required placeholder="Asunto" class="mt-2 w-full px-4 py-3 bg-onyx border border-gold/20 rounded-xl text-sm text-smoke placeholder:text-smoke/40 focus:outline-none focus:border-gold">
+            </label>
+
+            <label class="flex flex-col text-xs uppercase tracking-[0.3em] text-smoke/60 md:col-span-2">
+              Mensaje
+              <textarea id="contactMessage" required rows="6" placeholder="Cuéntanos en qué podemos ayudarte" class="mt-2 w-full px-4 py-3 bg-onyx border border-gold/20 rounded-xl text-sm text-smoke placeholder:text-smoke/40 focus:outline-none focus:border-gold"></textarea>
+            </label>
+
+            <div class="md:col-span-2 flex flex-col md:flex-row gap-3 md:items-center md:justify-between pt-2">
+              <p class="text-xs text-smoke/50">Alternativa: <a class="text-gold hover:underline" href="mailto:concierge@goldenline.com">concierge@goldenline.com</a></p>
+              <button type="submit" class="px-6 py-3 bg-gold text-onyx rounded-full text-xs uppercase tracking-[0.3em] font-semibold hover:bg-gold/90 transition">
+                Enviar por email
+              </button>
+            </div>
+
+            <div id="contactHint" class="md:col-span-2 hidden text-sm text-smoke/60"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-graphite border-t border-gold/10">
+    <div class="max-w-7xl mx-auto px-5 py-8 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+      <div class="text-xs text-smoke/50 uppercase tracking-[0.4em]">© 2025 GoldenLine</div>
+      <div class="text-xs uppercase tracking-[0.3em] text-smoke/60 flex gap-5">
+        <a href="/" class="hover:text-gold transition">Inicio</a>
+        <a href="/pages/contact" class="hover:text-gold transition">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const form = document.getElementById('contactForm');
+      const hint = document.getElementById('contactHint');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const subject = document.getElementById('contactSubject').value.trim();
+        const message = document.getElementById('contactMessage').value.trim();
+
+        const to = 'concierge@goldenline.com';
+        const body = [
+          `Nombre: ${name}`,
+          `Email: ${email}`,
+          '',
+          message
+        ].join('\n');
+
+        const url = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        hint.textContent = 'Abriendo tu cliente de correo…';
+        hint.classList.remove('hidden');
+        window.location.href = url;
+      });
+    })();
+  </script>
+</body>
+</html>

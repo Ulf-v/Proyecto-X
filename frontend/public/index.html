@@ -60,14 +60,14 @@
 </head>
 
 <body class="bg-onyx text-smoke min-h-screen flex flex-col">
-    <nav class="fixed inset-x-0 top-0 z-20 bg-graphite/95 backdrop-blur border-b border-gold/20">
+    <nav class="fixed inset-x-0 top-0 z-20 bg-graphite/90 backdrop-blur border-b border-gold/20 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.8)]">
         <div class="max-w-7xl mx-auto px-5">
             <div class="flex items-center justify-between h-16">
                 <a href="/" class="text-2xl font-semibold tracking-[0.3em] text-gold">GoldenLine</a>
                 <div class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest">
                     <a href="#colecciones" class="hover:text-gold transition">Colecciones</a>
                     <a href="#destacados" class="hover:text-gold transition">Destacados</a>
-                    <a href="#contacto" class="hover:text-gold transition">Contacto</a>
+                    <a href="/pages/contact" class="hover:text-gold transition">Contacto</a>
                 </div>
                 <div class="flex items-center gap-4">
                     <a href="/pages/cart" class="relative inline-flex items-center" aria-label="Carrito">
@@ -94,7 +94,7 @@
                 <div class="absolute inset-0 z-10 bg-gradient-to-r from-onyx/85 via-onyx/70 to-transparent"></div>
                 <div class="relative z-0 bg-cover bg-center min-h-[380px]"
                     style="background-image: url('./resources/banner.svg');"></div>
-                <div class="absolute inset-0 z-20 flex flex-col justify-center px-10 md:px-16 lg:px-24">
+                <div class="absolute inset-0 z-10 flex flex-col justify-center px-10 md:px-16 lg:px-24">
                     <span class="text-sm uppercase tracking-[0.4em] text-gold/80 mb-4">Colección Invierno 2025</span>
                     <h1 class="text-4xl md:text-5xl font-semibold text-white leading-tight max-w-3xl">Elegancia
                         monocromática con destellos dorados para cada momento.</h1>
@@ -249,22 +249,26 @@
         </section>
     </main>
 
-    <footer id="contacto" class="bg-graphite border-t border-gold/10">
-        <div class="max-w-7xl mx-auto px-5 py-10 grid gap-10 md:grid-cols-2">
-            <div class="space-y-4">
+    <footer class="bg-graphite border-t border-gold/10">
+        <div class="max-w-7xl mx-auto px-5 py-10 grid gap-10 md:grid-cols-3">
+            <div class="space-y-3">
                 <h2 class="text-xl font-semibold text-white tracking-[0.3em]">GoldenLine</h2>
-                <p class="text-sm text-smoke/60">Curaduría de lujo en tonos monocromáticos y dorados. Diseños
-                    atemporales con materiales premium.</p>
+                <p class="text-sm text-smoke/60">Curaduría de lujo en tonos monocromáticos y dorados. Diseños atemporales con materiales premium.</p>
             </div>
             <div class="space-y-2 text-sm text-smoke/60">
-                <p>¿Necesitas asistencia personalizada? Escríbenos a <a href="mailto:concierge@goldenline.com"
-                        class="text-gold hover:underline">concierge@goldenline.com</a></p>
-                <p>Atención telefónica: +34 000 000 000</p>
-                <p>Síguenos en redes: @GoldenLineLuxury</p>
+                <p class="text-xs uppercase tracking-[0.4em] text-gold/70">Navegación</p>
+                <a href="#destacados" class="block hover:text-gold transition">Destacados</a>
+                <a href="#colecciones" class="block hover:text-gold transition">Experiencia</a>
+                <a href="/pages/cart" class="block hover:text-gold transition">Carrito</a>
+            </div>
+            <div class="space-y-2 text-sm text-smoke/60">
+                <p class="text-xs uppercase tracking-[0.4em] text-gold/70">Soporte</p>
+                <a href="/pages/contact" class="block hover:text-gold transition">Página de contacto</a>
+                <a href="mailto:concierge@goldenline.com" class="block hover:text-gold transition">concierge@goldenline.com</a>
+                <p class="text-smoke/50">Atención telefónica: +34 000 000 000</p>
             </div>
         </div>
-        <div class="border-t border-gold/10 py-4 text-center text-xs text-smoke/40 uppercase tracking-[0.4em]">© 2025
-            GoldenLine. Todos los derechos reservados.</div>
+        <div class="border-t border-gold/10 py-4 text-center text-xs text-smoke/40 uppercase tracking-[0.4em]">© 2025 GoldenLine. Todos los derechos reservados.</div>
     </footer>
 
     <script src="./js/services/api.js"></script>
