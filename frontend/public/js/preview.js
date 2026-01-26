@@ -53,6 +53,8 @@
     const products = await fetchProducts();
     const map = Object.fromEntries(products.map(p=>[p.id,p]));
     document.querySelectorAll('[data-product-id]').forEach(el => {
+      // Si el componente ya gestiona sus propios clicks, no interferir
+      if (el.dataset && el.dataset.previewHandled) return;
       const id = el.getAttribute('data-product-id');
       if (!id || !map[id]) return;
       el.style.cursor = 'pointer';

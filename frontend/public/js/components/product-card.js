@@ -6,11 +6,17 @@ class ProductCard {
 
     render() {
         const card = document.createElement('article');
-        card.className = 'group bg-graphite rounded-3xl border border-gold/10 overflow-hidden transition hover:border-gold/40 hover:shadow-[0_0_30px_-10px_rgba(212,175,55,0.4)] transform hover:scale-[1.02] cursor-pointer';
+        card.className = 'group bg-graphite rounded-3xl border border-gold/10 overflow-hidden transition hover:border-gold/40 hover:shadow-[0_0_30px_-10px_rgba(212,175,55,0.4)] transform hover:scale-[1.02]';
         card.dataset.productId = this.product.id;
+        // Evitar que preview.js (legacy) enganche esta tarjeta
+        card.dataset.previewHandled = 'product-card';
         
         card.innerHTML = `
-            <div class="h-56 bg-gradient-to-br from-onyx via-graphite to-gold/40 overflow-hidden relative">
+            <button
+                type="button"
+                class="product-preview-trigger block w-full h-56 bg-gradient-to-br from-onyx via-graphite to-gold/40 overflow-hidden relative"
+                aria-label="Previsualizar ${this.product.nombre}"
+            >
                 <img 
                     src="${this.getProductImage()}" 
                     alt="${this.product.nombre}"
@@ -18,23 +24,50 @@ class ProductCard {
                     onerror="this.src='./resources/placeholder.jpg'"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-graphite/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </div>
+            </button>
             <div class="p-6 space-y-4">
                 <div class="space-y-2">
-                    <h3 class="text-xl font-semibold text-white group-hover:text-gold transition">${this.product.nombre}</h3>
+                    <h3 class="text-xl font-semibold text-white group-hover:text-gold transition">
+                        <a class="product-title-link" href="/pages/product/${this.product.id}">${this.product.nombre}</a>
+                    </h3>
                     <p class="text-sm text-smoke/70 line-clamp-2 min-h-[40px]">${this.product.descripcion || 'Producto exclusivo de nuestra colección.'}</p>
                 </div>
                 <div class="flex items-center justify-between pt-2 border-t border-gold/10">
                     <span class="text-2xl text-gold font-semibold tracking-wide">€${this.product.precio}</span>
                     <button 
-                        class="px-4 py-2 text-xs uppercase tracking-[0.3em] text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-onyx transition-all"
-                        onclick="window.location.href='/pages/product/${this.product.id}'"
+                        type="button"
+                        class="product-more-btn px-4 py-2 text-xs uppercase tracking-[0.3em] text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-onyx transition-all"
                     >
                         Ver más
                     </button>
                 </div>
             </div>
         `;
+
+        const previewTrigger = card.querySelector('.product-preview-trigger');
+        previewTrigger?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (typeof window.createProductModal === 'function') {
+                window.createProductModal(this.product);
+                return;
+            }
+            // Fallback: si no hay modal disponible, navegar a la página
+            window.location.href = `/pages/product/${this.product.id}`;
+        });
+
+        const titleLink = card.querySelector('.product-title-link');
+        titleLink?.addEventListener('click', (e) => {
+            // Evitar que listeners globales (si existen) intercepten el click
+            e.stopPropagation();
+        });
+
+        const moreBtn = card.querySelector('.product-more-btn');
+        moreBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = `/pages/product/${this.product.id}`;
+        });
         
         return card;
     }

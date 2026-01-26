@@ -45,14 +45,6 @@ async function loadFeaturedProducts() {
             const card = new ProductCard(producto);
             const cardElement = card.render();
             
-            // Añadir event listener para el modal
-            cardElement.addEventListener('click', (e) => {
-                // Solo si no se hizo click en el botón "Ver más"
-                if (!e.target.closest('button')) {
-                    createProductModal(producto);
-                }
-            });
-            
             container.appendChild(cardElement);
         });
         
