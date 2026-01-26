@@ -78,6 +78,14 @@ class ApiService {
         return this.fetchJson(`${API_CONFIG.ENDPOINTS.PRODUCTOS}/search?nombre=${encodeURIComponent(nombre)}`);
     }
 
+    // Pedidos
+    async createPedido(pedido) {
+        return this.fetchJson(API_CONFIG.ENDPOINTS.PEDIDOS, {
+            method: 'POST',
+            body: JSON.stringify(pedido)
+        });
+    }
+
     // Health check
     async checkHealth() {
         return this.fetchJson(API_CONFIG.ENDPOINTS.HEALTH);
