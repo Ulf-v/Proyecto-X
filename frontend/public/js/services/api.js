@@ -1,4 +1,4 @@
-// Configuración de la API
+// Configuración de la API, a futuro en el .env
 const API_CONFIG = {
     BASE_URL: 'http://localhost:8081/api',
     ENDPOINTS: {
@@ -14,6 +14,31 @@ class ApiService {
     constructor(baseUrl = API_CONFIG.BASE_URL) {
         this.baseUrl = baseUrl;
     }
+
+    /*
+     * EJEMPLO - Crear producto con el cambio de Autenticación
+     * const username = 'admin';
+     * const password = 'admin';
+     * const authHeader = 'Basic ' + btoa(`${username}:${password}`);
+     *
+     * const nuevoProducto = {
+     *   nombre: 'Prueba',
+     *   descripcion: 'Este es un producto de prueba bleh',
+     *   precio: 10000.0,
+     *   stock: 123,
+     *   marca: 'RiberaDelTajo',
+     *   categoria: 'ACCESORIOS'
+     * };
+     *
+     * await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PRODUCTOS}`, {
+     *   method: 'POST',
+     *   headers: {
+     *     'Content-Type': 'application/json',
+     *     'Authorization': authHeader
+     *   },
+     *   body: JSON.stringify(nuevoProducto)
+     * });
+     */
 
     async fetchJson(endpoint, options = {}) {
         try {
