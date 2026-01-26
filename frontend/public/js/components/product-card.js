@@ -21,7 +21,7 @@ class ProductCard {
             </div>
             <div class="p-6 space-y-4">
                 <div class="space-y-2">
-                    <h3 class="text-xl font-semibold text-white group-hover:text-gold transition">${this.product.nombre}</h3>
+                    <a href="/pages/product/${this.product.id}" class="block text-xl font-semibold text-white group-hover:text-gold transition">${this.product.nombre}</a>
                     <p class="text-sm text-smoke/70 line-clamp-2 min-h-[40px]">${this.product.descripcion || 'Producto exclusivo de nuestra colección.'}</p>
                 </div>
                 <div class="flex items-center justify-between pt-2 border-t border-gold/10">
