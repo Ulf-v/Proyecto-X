@@ -1,7 +1,7 @@
 (function () {
   async function fetchProduct(id) {
     try {
-      const res = await fetch(`http://localhost:8081/api/productos/${id}`);
+      const res = await fetch(`https://proyecto-x-v1-0-0-backend.onrender.com/api/productos/${id}`);
       return res.ok ? res.json() : null;
     } catch (error) {
       console.error('Error cargando producto:', error);

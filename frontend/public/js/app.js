@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8081/api';
+const API_URL = 'https://proyecto-x-v1-0-0-backend.onrender.com/api';
 
 // Check API Status
 async function checkApiStatus() {

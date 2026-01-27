@@ -1,6 +1,6 @@
 // Configuración de la API, a futuro en el .env
 const API_CONFIG = {
-    BASE_URL: 'http://localhost:8081/api',
+    BASE_URL: 'https://proyecto-x-v1-0-0-backend.onrender.com/api',
     ENDPOINTS: {
         PRODUCTOS: '/productos',
         USUARIOS: '/users',

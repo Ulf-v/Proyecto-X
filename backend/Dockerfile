@@ -13,7 +13,7 @@ RUN mvn clean package -DskipTests
 # Runtime stage
 FROM eclipse-temurin:17-jre-alpine
 
-WORKDIR /app
+WORKDIR /app/backend
 
 # curl se usa en el healthcheck del docker-compose
 RUN apk add --no-cache curl
