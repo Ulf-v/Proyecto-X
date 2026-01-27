@@ -17,7 +17,7 @@ Proyecto web completo con arquitectura de microservicios utilizando Docker, que 
   - WSL2 habilitado (en Windows)
 
 ## 🚀 Instalación Rápida
-
+hola
 ### 1. Clonar o descargar el proyecto
 
 ```bash
